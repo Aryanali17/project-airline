@@ -1,33 +1,32 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
+import os
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key_here'  # Required for flash messages
+app.secret_key = 'your_secret_key_here'
 
-# Home Page
+# Create writable directory for Azure (like /tmp)
+WRITE_DIR = os.path.join('/tmp', 'airline_data')
+os.makedirs(WRITE_DIR, exist_ok=True)
+
 @app.route('/')
 def home():
     return render_template('home.html')
 
-# Services Page
 @app.route('/services')
 def services():
     return render_template('services.html')
 
-# Contact Page
 @app.route('/contact')
 def contact():
     return render_template('contact.html')
 
-# Sign Up Page
 @app.route('/signup')
 def signup():
     return render_template('signup.html')
 
-# Ticket Booking Page
 @app.route('/ticketbooking')
 def ticketbooking():
     return render_template('ticketbooking.html')
-
 
 @app.route('/search', methods=['POST'])
 def search_flights():
@@ -37,12 +36,12 @@ def search_flights():
     date_from = request.form.get('departure_date')
     date_to = request.form.get('return_date')
 
-    with open("flight_searches.txt", "a", encoding="utf-8") as f:
+    filepath = os.path.join(WRITE_DIR, "flight_searches.txt")
+    with open(filepath, "a", encoding="utf-8") as f:
         f.write(f"Flight Search → Origin: {origin}, Destination: {destination}, Passengers: {passengers}, From: {date_from}, To: {date_to}\n")
 
     flash("Flight search submitted successfully!")
     return redirect(url_for('home'))
-
 
 @app.route('/book-ticket', methods=['POST'])
 def book_ticket():
@@ -53,12 +52,11 @@ def book_ticket():
     airline = request.form.get('airline')
     travel_date = request.form.get('date')
 
-    # Save to notepad file
-    with open("ticket_bookings.txt", "a", encoding="utf-8") as f:
+    filepath = os.path.join(WRITE_DIR, "ticket_bookings.txt")
+    with open(filepath, "a", encoding="utf-8") as f:
         f.write(f"Ticket Booked → Name: {name}, Email: {email}, From: {from_city}, To: {to_city}, Airline: {airline}, Date: {travel_date}\n")
 
     flash("Your ticket has been booked successfully!")
     return redirect(url_for('ticketbooking'))
 
-if __name__ == '__main__':
-    app.run()
+# Do not include app.run() for Azure deployment
