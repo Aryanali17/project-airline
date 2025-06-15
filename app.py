@@ -60,6 +60,23 @@ def book_ticket():
     return redirect(url_for('ticketbooking'))
 
 
+@app.route('/view-flight-searches')
+def view_flight_searches():
+    filepath = os.path.join('/tmp/airline_data', 'flight_searches.txt')
+    if os.path.exists(filepath):
+        with open(filepath, 'r', encoding='utf-8') as f:
+            data = f.read()
+        return f"<h2>Flight Searches:</h2><pre>{data}</pre>"
+    return "No flight search data found."
+
+@app.route('/view-ticket-bookings')
+def view_ticket_bookings():
+    filepath = os.path.join('/tmp/airline_data', 'ticket_bookings.txt')
+    if os.path.exists(filepath):
+        with open(filepath, 'r', encoding='utf-8') as f:
+            data = f.read()
+        return f"<h2>Ticket Bookings:</h2><pre>{data}</pre>"
+    return "No ticket booking data found."
 
 
 if __name__ == '__main__':
