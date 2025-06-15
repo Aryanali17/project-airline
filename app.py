@@ -49,7 +49,6 @@ def book_ticket():
     name = request.form.get('name')
     email = request.form.get('email')
     from_city = request.form.get('from')
-
     to_city = request.form.get('to')
     airline = request.form.get('airline')
     travel_date = request.form.get('date')
@@ -62,4 +61,4 @@ def book_ticket():
     return redirect(url_for('ticketbooking'))
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+    app.run()
