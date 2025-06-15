@@ -59,4 +59,8 @@ def book_ticket():
     flash("Your ticket has been booked successfully!")
     return redirect(url_for('ticketbooking'))
 
-# Do not include app.run() for Azure deployment
+
+
+
+if __name__ == '__main__':
+    app.run()
