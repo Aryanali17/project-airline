@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GlobeWings - Airline Booking</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+ 
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+   
+</head>
+
+<style>
+     .logosign {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 32px;
+            color: #ffffff;
+            font-weight: bold;
+            animation: slideInLeft 1s ease-in-out;
+        }
+
+        .logosign i {
+            color: #ffffff;
+            font-size: 28px;
+        }
+  .services-section {
+  padding: 60px 40px;
+  background: #f3fbff;
+  animation: fadeUp 1s ease-out forwards;
+      background: linear-gradient(135deg, #587ca1cc, #8cd0dbcc);
+  opacity: 0;
+}
+
+/* Title */
+.services-title {
+  text-align: center;
+  font-size: 36px;
+  color: #000000;
+  margin-bottom: 50px;
+}
+
+/* Grid Layout */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 35px;
+  justify-items: center;
+}
+
+
+/* Card Hover Animation */
+.service-card {
+  background: rgb(255, 255, 255);
+  width: 100%;
+  max-width: 360px;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  transform: translateY(0);
+  text-align: center;
+  position: relative;
+}
+
+/* Hover Effect */
+.service-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* Book Now Button */
+.book-btn {
+  display: inline-block;
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  background: #1e2e46;
+  color: rgb(246, 237, 237);
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 8px;
+  transition: background 0.3s ease, transform 0.3s ease, color 0.3s ease;
+}
+
+/* Button on Hover (when card is hovered) */
+.service-card:hover .book-btn {
+  background: #0c1c35;
+  color: #ffffff;
+  transform: scale(1.05);
+  font-weight: 800;
+}
+
+/* Optional: add delay for each card if using JS or inline styles */
+
+.service-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.service-card h3 {
+  font-size: 22px;
+  color: #004070;
+  margin: 18px 0 10px;
+}
+
+.service-card p {
+  font-size: 15px;
+  color: #333;
+  padding: 0 15px 20px;
+}
+
+
+
+/* Keyframes */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cardFade {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+  .why-choose-section {
+  padding: 60px 40px;
+  background: #eaf7ff;
+  animation: fadeUp 1s ease forwards;
+  opacity: 0;
+}
+
+.why-choose-title {
+  text-align: center;
+  font-size: 36px;
+  color: #003049;
+  margin-bottom: 40px;
+}
+
+.why-choose-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 30px;
+  justify-items: center;
+}
+
+.why-card {
+  background: white;
+  padding: 30px 20px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  animation: cardFade 1s ease forwards;
+  opacity: 0;
+}
+
+.why-card i {
+  font-size: 40px;
+  color: #1f6feb;
+  margin-bottom: 15px;
+}
+
+.why-card h3 {
+  font-size: 20px;
+  color: #003049;
+  margin-bottom: 10px;
+}
+
+.why-card p {
+  font-size: 15px;
+  color: #333;
+}
+
+.why-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Animations (if not already defined) */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cardFade {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+      .testimonial-section {
+  padding: 70px 40px;
+  background: #eaf7ff;
+  animation: fadeUp 1s ease forwards;
+  opacity: 0;
+}
+
+.testimonial-title {
+  text-align: center;
+  font-size: 36px;
+  color: #003049;
+  margin-bottom: 50px;
+}
+
+.testimonial-grid {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.testimonial-card {
+  background: #f4faff;
+  padding: 30px 25px;
+  width: 300px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  animation: cardFade 1s ease forwards;
+  opacity: 0;
+}
+
+.testimonial-card img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 15px;
+  border: 3px solid #1f6feb;
+}
+
+.testimonial-card h3 {
+  font-size: 18px;
+  color: #002642;
+  margin-bottom: 10px;
+}
+
+.testimonial-card p {
+  font-size: 14px;
+  color: #333;
+  font-style: italic;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+.popular-routes-section {
+  padding: 60px 40px;
+  background: #eef7fb;
+  animation: fadeUp 1s ease forwards;
+  opacity: 0;
+}
+
+.popular-title {
+  text-align: center;
+  font-size: 36px;
+  color: #003049;
+  margin-bottom: 50px;
+}
+
+.routes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  justify-items: center;
+}
+
+.route-card {
+  background: white;
+  padding: 25px 20px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  animation: cardFade 1s ease forwards;
+  opacity: 0;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.route-card h3 {
+  font-size: 22px;
+  color: #060b11;
+  margin-bottom: 10px;
+}
+
+.route-card p {
+  font-size: 15px;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.route-btn {
+  display: inline-block;
+  padding: 10px 20px;
+ background: #1e2e46;
+  color: rgb(246, 237, 237);
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.route-btn:hover {
+  background: #0d47a1;
+}
+
+.route-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+.faq-section {
+  padding: 70px 40px;
+  background: #ffffff;
+  animation: fadeUp 1s ease forwards;
+  opacity: 0;
+}
+
+.faq-title {
+  text-align: center;
+  font-size: 36px;
+  color: #003049;
+  margin-bottom: 40px;
+}
+
+.faq-container {
+  max-width: 1000px;
+  margin: auto;
+  display: grid;
+  gap: 25px;
+}
+
+.faq-item {
+  background: #f2faff;
+  padding: 20px 25px;
+  border-left: 5px solid #142642;
+  border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+  animation: cardFade 1s ease forwards;
+  opacity: 0;
+}
+
+.faq-item:hover {
+  transform: translateY(-5px);
+}
+
+.faq-item h3 {
+  font-size: 20px;
+  color: #030405;
+  margin-bottom: 10px;
+}
+
+.faq-item p {
+  font-size: 15px;
+  color: #333;
+}
+
+
+</style>
+
+<body >
+
+
+   <!-- nav -->
+    <header class="header1">
+        <div class="logosign">
+            <i class="fas fa-plane-departure"></i>
+            GlobeWings
+        </div>
+        <nav class="navbar" >
+                      <a href="{{ url_for('home') }}">Home</a>
+<a href="{{ url_for('services') }}">Services</a>
+<a href="{{ url_for('ticketbooking') }}">Ticket Booking</a>
+<a href="{{ url_for('contact') }}">Contact</a>
+<a href="{{ url_for('signup') }}">Sign Up</a>
+        </nav>
+    </header>
+
+     <div class="main-content">
+        <h1>Welcome to GlobeWings</h1>
+        <p>Built for your comfort, powered by trust </p>
+    </div>
+ 
+    
+    
+<!-- tickets -->
+ <center> <h1 class="center">Explore the services that move you forward</h1>
+
+
+
+<section class="services-section" style="margin-top: 500px;">
+  <h2 class="services-title">Explore Our Air Services</h2>
+  <div class="services-grid">
+    
+    <div class="service-card">
+  <img src="{{ url_for('static', filename='pia.jpg') }}" alt="PIA">
+      <h3>PIA</h3>
+      <p>National pride with global connectivity and reliable flights.</p>
+     <a href="{{ url_for('ticketbooking') }}" class="book-btn">Book Now</a>
+    </div>
+
+    <div class="service-card">
+   <img src="{{ url_for('static', filename='qatar.jpg') }}" alt="qatar">
+      <h3>Qatar Airways</h3>
+      <p>Luxury redefined with world-class in-flight experience.</p>
+<a href="{{ url_for('ticketbooking') }}" class="book-btn">Book Now</a>
+    </div>
+
+    <div class="service-card">
+     <img src="{{ url_for('static', filename='emirates.jpg') }}" alt="emirates">
+      <h3>Emirates Airways</h3>
+      <p>Fly beyond borders with comfort, class, and trust.</p>
+    <a href="{{ url_for('ticketbooking') }}" class="book-btn">Book Now</a>
+    </div>
+
+    <div class="service-card">
+<img src="{{ url_for('static', filename='privatejets.jpg') }}" alt="privatejets">
+      <h3>Private Jet</h3>
+      <p>Exclusive jets for your personal and business needs.</p>
+<a href="{{ url_for('ticketbooking') }}" class="book-btn">Book Now</a>
+    </div>
+
+    <div class="service-card">
+<img src="{{ url_for('static', filename='helicopter.jpg') }}" alt="helicopter">
+      <h3>Helicopter Services</h3>
+      <p>Quick and efficient travel for premium short-distance trips.</p>
+   <a href="{{ url_for('ticketbooking') }}" class="book-btn">Book Now</a>
+    </div>
+
+    <div class="service-card">
+ <img src="{{ url_for('static', filename='turkish.jpg') }}" alt="helicopter">
+      <h3>Turkish Airways</h3>
+      <p>Exceptional service, connecting you to the world.</p>
+  <a href="{{ url_for('ticketbooking') }}" class="book-btn">Book Now</a>
+    </div>
+
+  </div>
+  <div class="service-card" style="animation-delay: 0.3s;"></div>
+<div class="service-card" style="animation-delay: 0.5s;"></div>
+<div class="service-card" style="animation-delay: 0.7s;"></div>
+
+
+
+
+
+
+
+</section>
+
+<section class="why-choose-section">
+  <h2 class="why-choose-title">Why Choose Our Services</h2>
+  <div class="why-choose-grid">
+    <div class="why-card">
+      <i class="fas fa-headset" style="  color: #003049;"></i>
+      <h3>24/7 Support</h3>
+      <p>Our team is available anytime to assist you with bookings and inquiries.</p>
+    </div>
+    <div class="why-card">
+      <i class="fas fa-lock"  style="  color: #003049;"></i>
+      <h3>Secure Booking</h3>
+      <p>Your personal and payment details are encrypted and fully protected.</p>
+    </div>
+    <div class="why-card"  >
+      <i class="fas fa-plane-departure"  style="  color: #003049;"></i>
+      <h3>Top Airlines</h3>
+      <p>We partner with the best airlines to ensure you have a safe, smooth journey.</p>
+    </div>
+    <div class="why-card">
+      <i class="fas fa-dollar-sign"  style="  color: #003049;"></i>
+      <h3>Affordable Rates</h3>
+      <p>Get the best deals and discounts on all your favorite travel routes.</p>
+    </div>
+  </div>
+</section>
+
+
+<section class="testimonial-section">
+  <h2 class="testimonial-title">What Our Customers Say</h2>
+  <div class="testimonial-grid">
+    <div class="testimonial-card">
+      <img src="{{ url_for('static', filename='user1.jpg') }}" alt="User 1">
+      <h3>Sarah Ahmed</h3>
+      <p>"Booking was smooth and simple. Highly satisfied with the customer support!"</p>
+    </div>
+    <div class="testimonial-card">
+          <img src="{{ url_for('static', filename='user2.jpg') }}" alt="User 2">
+      <h3>Ali Khan</h3>
+      <p>"Quick and affordable flights. Definitely using this service again!"</p>
+    </div>
+    <div class="testimonial-card">
+      <img src="{{ url_for('static', filename='user3.jpg') }}" alt="User 3">
+      <h3>Ayesha Rehman</h3>
+      <p>"Very easy to navigate. Loved the fast confirmation and airline choices!"</p>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<section class="popular-routes-section">
+  <h2 class="popular-title">Popular Routes</h2>
+  <div class="routes-grid">
+    <div class="route-card">
+      <h3>Lahore → Dubai</h3>
+      <p>Available daily via Emirates & PIA. Starting from PKR 49,000</p>
+   <a href="{{ url_for('ticketbooking') }}" class="route-btn">Book Now</a>
+
+    </div>
+    <div class="route-card">
+      <h3>Karachi → Doha</h3>
+      <p>Fly Qatar Airways nonstop with premium comfort. From PKR 45,500</p>
+<a href="{{ url_for('ticketbooking') }}" class="route-btn">Book Now</a>
+
+    </div>
+    <div class="route-card">
+      <h3>Islamabad → Istanbul</h3>
+      <p>Turkish Airlines daily flights. Enjoy scenic Europe entry. PKR 59,000</p>
+      <a href="{{ url_for('ticketbooking') }}" class="route-btn">Book Now</a>
+
+    </div>
+    <div class="route-card">
+      <h3>Private Jet: Karachi → Skardu</h3>
+      <p>Luxurious charter available. Custom departure. From PKR 300,000</p>
+     <a href="{{ url_for('ticketbooking') }}" class="route-btn">Book Now</a>
+
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+<section class="faq-section">
+  <h2 class="faq-title">Frequently Asked Questions</h2>
+  <div class="faq-container">
+    <div class="faq-item">
+      <h3>How can I book a flight?</h3>
+      <p>You can book a flight by clicking on the "Book Now" button under your preferred airline or route. This will take you to our ticket booking page.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Do you offer international flights?</h3>
+      <p>Yes, we offer international flights through Qatar Airways, Turkish Airlines, Emirates, and more.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Can I cancel or reschedule my booking?</h3>
+      <p>Yes, cancellation and rescheduling policies depend on the airline. Please contact support for assistance.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Do you provide private jet or helicopter services?</h3>
+      <p>Yes, we offer luxury private jet and helicopter bookings. Please check our services section for availability.</p>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+  <!-- footer -->
+ <footer class="footer" style="margin-top: 80px;">
+  <div class="footer-top">
+    <div class="footer-logo">
+      <h2><i class="fas fa-plane-departure"></i> GlobeWing</h2>
+      <p>Great People to Fly With</p>
+    </div>
+    <div class="footer-contact">
+      <p><i class="fas fa-map-marker-alt"></i> GLOBEWING AIRLINE MANAGEMENT  </p>
+      <p><i class="fas fa-phone"></i> (+92-21)-111-786-786</p>
+      <p><i class="fas fa-envelope"></i> contact@globewing.com</p>
+    </div>
+  </div>
+
+  <hr />
+
+  <div class="footer-social">
+    <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://x.com/"><i class="fab fa-x-twitter"></i></a>
+    <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
+  </div>
+
+  <div class="footer-links">
+    <div>
+      <h4>LINKS</h4>
+     <ul>
+          <li><a href="{{ url_for('home') }}" style="text-decoration: none;">Home</a></li>
+    <li><a href="{{ url_for('services') }}" style="text-decoration: none;">Services</a></li>
+    <li><a href="{{ url_for('ticketbooking') }}" style="text-decoration: none;">Ticket Booking</a></li>
+    <li><a href="{{ url_for('contact') }}" style="text-decoration: none;">Contact</a></li>
+    <li><a href="{{ url_for('signup') }}" style="text-decoration: none;">Signup</a></li>
+      </ul>
+    </div>
+
+
+  </div>
+  </footer>
+
+
+
+
+
+    </body>
+    </html>

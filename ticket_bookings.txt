@@ -1,0 +1,3 @@
+Ticket Booked → Name: aryanali, Email: alirazaa0797@gmail.com, From: karachi, To: islamabad, Airline: PIA, Date: 2025-06-14
+Ticket Booked → Name: aryanali, Email: alirazaa0797@gmail.com, From: karachi, To: islamabad, Airline: PIA, Date: 2025-06-14
+Ticket Booked → Name: alirazaa, Email: alirazaa0797@gmail.com, From: karachi, To: lahore, Airline: QATAR AIRWAYS, Date: 2025-06-14

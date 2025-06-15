@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GlobeWings - Airline Booking</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+   
+</head>
+<style>
+
+
+
+
+
+.contact-form {
+  flex: 1 1 70%;
+
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  animation: slideInLeft 0.6s ease;
+    background: linear-gradient(135deg, #33475bcc, #64c5d3cc);
+}
+.contact-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  padding: 50px;
+  animation: fadeInUp 1s ease forwards;
+  opacity: 0; /* Required for animation to fade in */
+  margin-top: 700px;
+    background: linear-gradient(135deg, #b1c6dbcc, #9fd9e2cc);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.contact-form h2 {
+  font-size: 28px;
+  color: #000000;
+  margin-bottom: 25px;
+}
+
+.contact-form label {
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 5px;
+  font-weight: 600;
+  color: #000000;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  outline: none;
+  resize: none;
+  transition: border 0.3s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: #4a90e2;
+}
+
+.contact-form button {
+  margin-top: 25px;
+  padding: 14px 30px;
+  background: #5199a4cc;
+  color: rgb(21, 19, 19);
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.contact-form button:hover {
+  background: #8cb7e9;
+  color: #000000;
+}
+
+.map-section {
+  flex: 1 1 28%;
+  min-height: 400px;
+  border-radius: 15px;
+  overflow: hidden;
+  animation: slideInRight 0.6s ease;
+}
+
+/* Animations */
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+   .logosign {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 32px;
+            color: #ffffff;
+            font-weight: bold;
+            animation: slideInLeft 1s ease-in-out;
+        }
+
+        .logosign i {
+            color: #ffffff;
+            font-size: 28px;
+        }
+
+
+</style>
+<body >
+
+    <!-- nav -->
+    <header class="header1">
+        <div class="logosign">
+            <i class="fas fa-plane-departure"></i>
+            GlobeWings
+        </div>
+        <nav class="navbar" >
+                  <a href="{{ url_for('home') }}">Home</a>
+<a href="{{ url_for('services') }}">Services</a>
+<a href="{{ url_for('ticketbooking') }}">Ticket Booking</a>
+<a href="{{ url_for('contact') }}">Contact</a>
+<a href="{{ url_for('signup') }}">Sign Up</a>
+        </nav>
+    </header>
+
+     <div class="main-content">
+        <h1>Welcome to GlobeWings</h1>
+        <p>Contact us by submitting your feedback and we will contact ! </p>
+    </div>
+ 
+    
+    
+<!-- tickets -->
+ <center> <h1 class="center">Let's connect and make it happen</h1>
+    <section class="contact-container">
+  <div class="contact-form">
+    <h2>Contact Us</h2>
+    <form>
+      <label for="name">Name</label>
+      <input type="text" id="name" placeholder="Enter your name" required>
+
+      <label for="username">Username</label>
+      <input type="text" id="username" placeholder="Enter your username" required>
+
+      <label for="comment">Your Message</label>
+      <textarea id="comment" placeholder="Enter your feedback..." rows="6" required></textarea>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <div class="map-section">
+    <iframe
+      src="https://maps.google.com/maps?q=karachi&t=&z=13&ie=UTF8&iwloc=&output=embed"
+      width="100%"
+      height="100%"
+      frameborder="0"
+      allowfullscreen=""
+      aria-hidden="false"
+      tabindex="0"
+    ></iframe>
+  </div>
+  </section>
+
+  <!-- footer -->
+ <footer class="footer" style="margin-top: 80px;">
+  <div class="footer-top">
+    <div class="footer-logo">
+      <h2><i class="fas fa-plane-departure"></i> GlobeWing</h2>
+      <p>Great People to Fly With</p>
+    </div>
+    <div class="footer-contact">
+      <p><i class="fas fa-map-marker-alt"></i> GLOBEWING AIRLINE MANAGEMENT  </p>
+      <p><i class="fas fa-phone"></i> (+92-21)-111-786-786</p>
+      <p><i class="fas fa-envelope"></i> contact@globewing.com</p>
+    </div>
+  </div>
+
+  <hr />
+
+  <div class="footer-social">
+    <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://x.com/"><i class="fab fa-x-twitter"></i></a>
+    <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
+  </div>
+
+  <div class="footer-links">
+    <div>
+      <h4>LINKS</h4>
+      <ul>
+          <li><a href="{{ url_for('home') }}" style="text-decoration: none;">Home</a></li>
+    <li><a href="{{ url_for('services') }}" style="text-decoration: none;">Services</a></li>
+    <li><a href="{{ url_for('ticketbooking') }}" style="text-decoration: none;">Ticket Booking</a></li>
+    <li><a href="{{ url_for('contact') }}" style="text-decoration: none;">Contact</a></li>
+    <li><a href="{{ url_for('signup') }}" style="text-decoration: none;">Signup</a></li>
+      </ul>
+    </div>
+
+
+  </div>
+  </footer>
+
+
+
+</body>
+</html>
+

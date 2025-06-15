@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GlobeWings - Airline Booking</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+   
+   
+</head>
+<style> 
+ .logosign {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 32px;
+            color: #ffffff;
+            font-weight: bold;
+            animation: slideInLeft 1s ease-in-out;
+        }
+
+        .logosign i {
+            color: #ffffff;
+            font-size: 28px;
+        }
+        .booking-summary {
+  background-color: #eaf4ff;
+  padding: 40px;
+  margin-top: 60px;
+  border-radius: 16px;
+  text-align: center;
+}
+
+.booking-summary h2 {
+  color: #003049;
+  margin-bottom: 20px;
+}
+
+.booking-summary ul {
+  list-style: none;
+  padding-left: 0;
+  font-size: 16px;
+  color: #333;
+}
+
+.booking-summary li {
+  margin: 10px 0;
+  font-weight: 500;
+}
+.travel-tips {
+  background-color: #e3f2fd;
+  padding: 40px;
+  margin-top: 50px;
+  border-radius: 16px;
+  animation: fadeUp 1s ease forwards;
+}
+.travel-tips h2 {
+  font-size: 30px;
+  color: #003049;
+  margin-bottom: 20px;
+}
+.travel-tips ul {
+  list-style: none;
+  padding: 0;
+}
+.travel-tips li {
+  margin-bottom: 10px;
+  font-size: 17px;
+  color: #444;
+  position: relative;
+  padding-left: 25px;
+}
+.travel-tips li::before {
+  content: "✈️";
+  position: absolute;
+  left: 0;
+}
+
+    .offers-section {
+  padding: 50px 40px;
+  color: #444;
+  border-radius: 20px;
+    background-color: #e3f2fd;
+  margin-top: 60px;
+}
+.offers-section h2 {
+  font-size: 32px;
+  text-align: center;
+  color: #000000;
+  margin-bottom: 30px;
+}
+.offers-grid {
+  display: flex;
+  gap: 25px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.offer-card {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  max-width: 300px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+.offer-card:hover {
+  transform: scale(1.05);
+}
+.offer-card h3 {
+  color: #050505;
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+.offer-card p {
+  color: #333;
+}
+    
+</style>
+<body>
+    
+
+   <!-- nav -->
+    <header class="header1">
+        <div class="logosign">
+            <i class="fas fa-plane-departure"></i>
+            GlobeWings
+        </div>
+        <nav class="navbar" >
+            <a href="{{ url_for('home') }}">Home</a>
+<a href="{{ url_for('services') }}">Services</a>
+<a href="{{ url_for('ticketbooking') }}">Ticket Booking</a>
+<a href="{{ url_for('contact') }}">Contact</a>
+<a href="{{ url_for('signup') }}">Sign Up</a>
+        </nav>
+    </header>
+
+     <div class="main-content">
+        <h1>Welcome to GlobeWings</h1>
+        <p>Book your desired tickets now!  </p>
+    </div>
+ 
+    
+    
+<!-- tickets -->
+ <center> <h1 class="center">Travel with us by booking great flights ! </h1>
+
+
+
+
+
+  <section class="booking-section">
+    <div class="booking-container">
+      <h1 class="booking-title">Book Your Flight</h1>
+      {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <div class="flash-message">
+      {% for message in messages %}
+        <p>{{ message }}</p>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+    <form action="{{ url_for('book_ticket') }}" method="POST" class="booking-form">
+        
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+        <label for="from">From</label>
+        <input type="text" id="from" name="from" placeholder="Departure city" required>
+
+        <label for="to">To</label>
+        <input type="text" id="to" name="to" placeholder="Destination city" required>
+
+        <label for="airline">Select Airline</label>
+        <select id="airline" name="airline" required>
+          <option value="">-- Select Airline --</option>
+          <option value="PIA">PIA</option>
+          <option value="QATAR AIRWAYS">QATAR AIRWAYS</option>
+          <option value="EMIRATES">EMIRATES</option>
+          <option value="TURKISH AIRLINES">TURKISH AIRLINES</option>
+          <option value="PRIVATE JET">PRIVATE JET</option>
+          <option value="HELICOPTER">HELICOPTER</option>
+        </select>
+
+        <label for="date">Travel Date</label>
+        <input type="date" id="date" name="date" required>
+
+        <button type="submit" class="booking-btn">Book Now</button>
+      </form>
+    </div>
+  </section>
+
+
+<section class="booking-summary">
+  <h2>Why Book With  GLOBALWINGS Airlines?</h2>
+  <ul>
+    <li>✔ Real-time booking confirmation</li>
+    <li>✔ Trusted airlines and services</li>
+    <li>✔ Secure payment methods</li>
+    <li>✔ 24/7 customer support</li>
+  </ul>
+</section>
+
+<section class="travel-tips">
+  <h2>✈️ Travel Tips</h2>
+  <ul>
+    <li>✅ Arrive at the airport 3 hours before international flights.</li>
+    <li>🧳 Keep your passport and ID handy at all times.</li>
+    <li>💡 Check baggage rules before packing.</li>
+    <li>📱 Keep digital & printed copies of your tickets.</li>
+  </ul>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+<section class="offers-section">
+  <h2>🎉 Special Offers</h2>
+  <div class="offers-grid">
+    <div class="offer-card">
+      <h3>Summer Sale</h3>
+      <p>Get 20% off on all international bookings till July!</p>
+    </div>
+    <div class="offer-card">
+      <h3>Student Discount</h3>
+      <p>Exclusive 15% off for students with valid ID.</p>
+    </div>
+  </div>
+</section>
+
+
+
+  <!-- footer -->
+ <footer class="footer" style="margin-top: 80px;">
+  <div class="footer-top">
+    <div class="footer-logo">
+      <h2><i class="fas fa-plane-departure"></i> GlobeWing</h2>
+      <p>Great People to Fly With</p>
+    </div>
+    <div class="footer-contact">
+      <p><i class="fas fa-map-marker-alt"></i> GLOBEWING AIRLINE MANAGEMENT  </p>
+      <p><i class="fas fa-phone"></i> (+92-21)-111-786-786</p>
+      <p><i class="fas fa-envelope"></i> contact@globewing.com</p>
+    </div>
+  </div>
+
+  <hr />
+
+  <div class="footer-social">
+    <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://x.com/"><i class="fab fa-x-twitter"></i></a>
+    <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
+  </div>
+
+  <div class="footer-links">
+    <div>
+      <h4>LINKS</h4>
+      <ul>
+            <li><a href="{{ url_for('home') }}" style="text-decoration: none;">Home</a></li>
+    <li><a href="{{ url_for('services') }}" style="text-decoration: none;">Services</a></li>
+    <li><a href="{{ url_for('ticketbooking') }}" style="text-decoration: none;">Ticket Booking</a></li>
+    <li><a href="{{ url_for('contact') }}" style="text-decoration: none;">Contact</a></li>
+    <li><a href="{{ url_for('signup') }}" style="text-decoration: none;">Signup</a></li>
+      </ul>
+    </div>
+
+
+  </div>
+  </footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
